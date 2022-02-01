@@ -1,17 +1,23 @@
 package com.example.musicatpsit;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 public class GestioneBrani {
 
-    ArrayList<Brano> brani = new ArrayList();
+    public ArrayList<Brano> brani = new ArrayList<Brano>();
 
     public boolean inserisciBrano(Brano b){
+        Brano brano_to_insert = new Brano(b);
         try{
-            brani.add(new Brano(b));
+            brani.add(brano_to_insert);
         } catch (Exception e){
             return false;
         }
+
+
+        Log.d("aggiunto", brani.get(0).getTitolo().toString());
         return true;
     }
 
@@ -28,10 +34,11 @@ public class GestioneBrani {
         return "ciao";
     }
 
-    public String visualizzaBrani(String autore){
+    public String visualizzaBrani(){
         StringBuilder sbBrni = new StringBuilder();
         for (Brano brc : brani)
         {
+            Log.d("Entra", "cisono");
             sbBrni.append(brc.getTitolo().toString()+"-");
             sbBrni.append(brc.getAutore().toString()+"-");
             sbBrni.append(brc.getGenere().toString()+"\n");
